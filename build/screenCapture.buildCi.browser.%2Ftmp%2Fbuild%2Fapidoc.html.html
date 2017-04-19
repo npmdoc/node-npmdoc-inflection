@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/dreamerslab/node.inflection#readme"
-
-    >inflection (v1.12.0)</a>
+    <a href="https://github.com/dreamerslab/node.inflection#readme">inflection (v1.12.0)</a>
 </h1>
 <h4>A port of inflection-js to node.js module</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.inflection">module inflection</a><ol>
 
@@ -408,13 +401,13 @@
   if( override ){
     str = override;
   }else{
-    var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &#x3e; -1 );
+    var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &gt; -1 );
 
     if( !ignore ){
       var i = 0;
       var j = rules.length;
 
-      for( ; i &#x3c; j; i++ ){
+      for( ; i &lt; j; i++ ){
         if( str.match( rules[ i ][ 0 ])){
           if( rules[ i ][ 1 ] !== undefined ){
             str = str.replace( rules[ i ][ 0 ], rules[ i ][ 1 ]);
@@ -435,13 +428,13 @@
 * @returns {String} Return passed String modified by passed rules.
 * @example
 *
-*     this.<span class="apidocCodeKeywordSpan">_apply_rules</span>( &#x27;cows&#x27;, singular_rules ); // === &#x27;cow&#x27;
+*     this.<span class="apidocCodeKeywordSpan">_apply_rules</span>( 'cows', singular_rules ); // === 'cow'
 */
  _apply_rules : function ( str, rules, skip, override ){
    if( override ){
      str = override;
    }else{
-     var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &#x3e; -1 );
+     var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &gt; -1 );
 ...</pre></li>
     </ul>
 
@@ -455,31 +448,31 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">camelize = function ( str, low_first_letter ){
-  var str_path = str.split( &#x27;/&#x27; );
+  var str_path = str.split( '/' );
   var i        = 0;
   var j        = str_path.length;
   var str_arr, init_x, k, l, first;
 
-  for( ; i &#x3c; j; i++ ){
-    str_arr = str_path[ i ].split( &#x27;_&#x27; );
+  for( ; i &lt; j; i++ ){
+    str_arr = str_path[ i ].split( '_' );
     k       = 0;
     l       = str_arr.length;
 
-    for( ; k &#x3c; l; k++ ){
+    for( ; k &lt; l; k++ ){
       if( k !== 0 ){
         str_arr[ k ] = str_arr[ k ].toLowerCase();
       }
 
       first = str_arr[ k ].charAt( 0 );
-      first = low_first_letter &#x26;&#x26; i === 0 &#x26;&#x26; k === 0
+      first = low_first_letter &amp;&amp; i === 0 &amp;&amp; k === 0
         ? first.toLowerCase() : first.toUpperCase();
       str_arr[ k ] = first + str_arr[ k ].substring( 1 );
     }
 
-    str_path[ i ] = str_arr.join( &#x27;&#x27; );
+    str_path[ i ] = str_arr.join( '' );
   }
 
-  return str_path.join( &#x27;::&#x27; );
+  return str_path.join( '::' );
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -577,7 +570,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">dasherize = function ( str ){
-  return str.replace( space_or_underbar, &#x27;-&#x27; );
+  return str.replace( space_or_underbar, '-' );
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 - inflection.pluralize( str, plural );
@@ -608,7 +601,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">demodulize = function ( str ){
-  var str_arr = str.split( &#x27;::&#x27; );
+  var str_arr = str.split( '::' );
 
   return str_arr[ str_arr.length - 1 ];
 }</pre></li>
@@ -640,7 +633,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">foreign_key = function ( str, drop_id_ubar ){
   str = inflector.demodulize( str );
-  str = inflector.underscore( str ) + (( drop_id_ubar ) ? ( &#x27;&#x27; ) : ( &#x27;_&#x27; )) + &#x27;id&#x27;;
+  str = inflector.underscore( str ) + (( drop_id_ubar ) ? ( '' ) : ( '_' )) + 'id';
 
   return str;
 }</pre></li>
@@ -673,8 +666,8 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">humanize = function ( str, low_first_letter ){
   str = str.toLowerCase();
-  str = str.replace( id_suffix, &#x27;&#x27; );
-  str = str.replace( underbar, &#x27; &#x27; );
+  str = str.replace( id_suffix, '' );
+  str = str.replace( underbar, ' ' );
 
   if( !low_first_letter ){
     str = inflector.capitalize( str );
@@ -719,8 +712,8 @@
   var i     = from_index;
   var j     = arr.length;
 
-  for( ; i &#x3c; j; i++ ){
-    if( arr[ i ]  === item || compare_func &#x26;&#x26; compare_func( arr[ i ], item )){
+  for( ; i &lt; j; i++ ){
+    if( arr[ i ]  === item || compare_func &amp;&amp; compare_func( arr[ i ], item )){
       index = i;
       break;
     }
@@ -761,7 +754,7 @@
 
   if( isNaN( count )) return str;
 
-  if( count === 0 || count &#x3e; 1 ){
+  if( count === 0 || count &gt; 1 ){
     return inflector._apply_rules( str, plural_rules, uncountable_words, plural );
   }else{
     return inflector._apply_rules( str, singular_rules, uncountable_words, singular );
@@ -796,25 +789,25 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">ordinalize = function ( str ){
-  var str_arr = str.split( &#x27; &#x27; );
+  var str_arr = str.split( ' ' );
   var i       = 0;
   var j       = str_arr.length;
 
-  for( ; i &#x3c; j; i++ ){
+  for( ; i &lt; j; i++ ){
     var k = parseInt( str_arr[ i ], 10 );
 
     if( !isNaN( k )){
       var ltd = str_arr[ i ].substring( str_arr[ i ].length - 2 );
       var ld  = str_arr[ i ].substring( str_arr[ i ].length - 1 );
-      var suf = &#x27;th&#x27;;
+      var suf = 'th';
 
-      if( ltd != &#x27;11&#x27; &#x26;&#x26; ltd != &#x27;12&#x27; &#x26;&#x26; ltd != &#x27;13&#x27; ){
-        if( ld === &#x27;1&#x27; ){
-          suf = &#x27;st&#x27;;
-        }else if( ld === &#x27;2&#x27; ){
-          suf = &#x27;nd&#x27;;
-        }else if( ld === &#x27;3&#x27; ){
-          suf = &#x27;rd&#x27;;
+      if( ltd != '11' &amp;&amp; ltd != '12' &amp;&amp; ltd != '13' ){
+        if( ld === '1' ){
+          suf = 'st';
+        }else if( ld === '2' ){
+          suf = 'nd';
+        }else if( ld === '3' ){
+          suf = 'rd';
         }
       }
 
@@ -822,7 +815,7 @@
     }
   }
 
-  return str_arr.join( &#x27; &#x27; );
+  return str_arr.join( ' ' );
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 - inflection.capitalize( str );
@@ -839,7 +832,7 @@
 
 ## Usage
 
-&#x3e; Require the module before using
+&gt; Require the module before using
 ...</pre></li>
     </ul>
 
@@ -946,27 +939,27 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">titleize = function ( str ){
-  str         = str.toLowerCase().replace( underbar, &#x27; &#x27; );
-  var str_arr = str.split( &#x27; &#x27; );
+  str         = str.toLowerCase().replace( underbar, ' ' );
+  var str_arr = str.split( ' ' );
   var i       = 0;
   var j       = str_arr.length;
   var d, k, l;
 
-  for( ; i &#x3c; j; i++ ){
-    d = str_arr[ i ].split( &#x27;-&#x27; );
+  for( ; i &lt; j; i++ ){
+    d = str_arr[ i ].split( '-' );
     k = 0;
     l = d.length;
 
-    for( ; k &#x3c; l; k++){
-      if( inflector.indexOf( non_titlecased_words, d[ k ].toLowerCase()) &#x3c; 0 ){
+    for( ; k &lt; l; k++){
+      if( inflector.indexOf( non_titlecased_words, d[ k ].toLowerCase()) &lt; 0 ){
         d[ k ] = inflector.capitalize( d[ k ]);
       }
     }
 
-    str_arr[ i ] = d.join( &#x27;-&#x27; );
+    str_arr[ i ] = d.join( '-' );
   }
 
-  str = str_arr.join( &#x27; &#x27; );
+  str = str_arr.join( ' ' );
   str = str.substring( 0, 1 ).toUpperCase() + str.substring( 1 );
 
   return str;
@@ -1002,7 +995,7 @@
   var i = 0;
   var j = arr.length;
 
-  for( ;i &#x3c; j; i++ ){
+  for( ;i &lt; j; i++ ){
     var method = arr[ i ];
 
     if( inflector.hasOwnProperty( method )){
@@ -1026,7 +1019,7 @@
 
 ## Usage
 
-&#x3e; Require the module before using
+&gt; Require the module before using
 ...</pre></li>
     </ul>
 
@@ -1040,18 +1033,18 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">underscore = function ( str, all_upper_case ){
-  if( all_upper_case &#x26;&#x26; str === str.toUpperCase()) return str;
+  if( all_upper_case &amp;&amp; str === str.toUpperCase()) return str;
 
-  var str_path = str.split( &#x27;::&#x27; );
+  var str_path = str.split( '::' );
   var i        = 0;
   var j        = str_path.length;
 
-  for( ; i &#x3c; j; i++ ){
-    str_path[ i ] = str_path[ i ].replace( uppercase, &#x27;_$1&#x27; );
-    str_path[ i ] = str_path[ i ].replace( underbar_prefix, &#x27;&#x27; );
+  for( ; i &lt; j; i++ ){
+    str_path[ i ] = str_path[ i ].replace( uppercase, '_$1' );
+    str_path[ i ] = str_path[ i ].replace( underbar_prefix, '' );
   }
 
-  return str_path.join( &#x27;/&#x27; ).toLowerCase();
+  return str_path.join( '/' ).toLowerCase();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 ## API
@@ -1094,13 +1087,13 @@
   if( override ){
     str = override;
   }else{
-    var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &#x3e; -1 );
+    var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &gt; -1 );
 
     if( !ignore ){
       var i = 0;
       var j = rules.length;
 
-      for( ; i &#x3c; j; i++ ){
+      for( ; i &lt; j; i++ ){
         if( str.match( rules[ i ][ 0 ])){
           if( rules[ i ][ 1 ] !== undefined ){
             str = str.replace( rules[ i ][ 0 ], rules[ i ][ 1 ]);
@@ -1121,13 +1114,13 @@
 * @returns {String} Return passed String modified by passed rules.
 * @example
 *
-*     this.<span class="apidocCodeKeywordSpan">_apply_rules</span>( &#x27;cows&#x27;, singular_rules ); // === &#x27;cow&#x27;
+*     this.<span class="apidocCodeKeywordSpan">_apply_rules</span>( 'cows', singular_rules ); // === 'cow'
 */
  _apply_rules : function ( str, rules, skip, override ){
    if( override ){
      str = override;
    }else{
-     var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &#x3e; -1 );
+     var ignore = ( inflector.indexOf( skip, str.toLowerCase()) &gt; -1 );
 ...</pre></li>
     </ul>
 
@@ -1141,31 +1134,31 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">camelize = function ( str, low_first_letter ){
-  var str_path = str.split( &#x27;/&#x27; );
+  var str_path = str.split( '/' );
   var i        = 0;
   var j        = str_path.length;
   var str_arr, init_x, k, l, first;
 
-  for( ; i &#x3c; j; i++ ){
-    str_arr = str_path[ i ].split( &#x27;_&#x27; );
+  for( ; i &lt; j; i++ ){
+    str_arr = str_path[ i ].split( '_' );
     k       = 0;
     l       = str_arr.length;
 
-    for( ; k &#x3c; l; k++ ){
+    for( ; k &lt; l; k++ ){
       if( k !== 0 ){
         str_arr[ k ] = str_arr[ k ].toLowerCase();
       }
 
       first = str_arr[ k ].charAt( 0 );
-      first = low_first_letter &#x26;&#x26; i === 0 &#x26;&#x26; k === 0
+      first = low_first_letter &amp;&amp; i === 0 &amp;&amp; k === 0
         ? first.toLowerCase() : first.toUpperCase();
       str_arr[ k ] = first + str_arr[ k ].substring( 1 );
     }
 
-    str_path[ i ] = str_arr.join( &#x27;&#x27; );
+    str_path[ i ] = str_arr.join( '' );
   }
 
-  return str_path.join( &#x27;::&#x27; );
+  return str_path.join( '::' );
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -1263,7 +1256,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">dasherize = function ( str ){
-  return str.replace( space_or_underbar, &#x27;-&#x27; );
+  return str.replace( space_or_underbar, '-' );
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 - inflection.pluralize( str, plural );
@@ -1294,7 +1287,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">demodulize = function ( str ){
-  var str_arr = str.split( &#x27;::&#x27; );
+  var str_arr = str.split( '::' );
 
   return str_arr[ str_arr.length - 1 ];
 }</pre></li>
@@ -1326,7 +1319,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">foreign_key = function ( str, drop_id_ubar ){
   str = inflector.demodulize( str );
-  str = inflector.underscore( str ) + (( drop_id_ubar ) ? ( &#x27;&#x27; ) : ( &#x27;_&#x27; )) + &#x27;id&#x27;;
+  str = inflector.underscore( str ) + (( drop_id_ubar ) ? ( '' ) : ( '_' )) + 'id';
 
   return str;
 }</pre></li>
@@ -1359,8 +1352,8 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">humanize = function ( str, low_first_letter ){
   str = str.toLowerCase();
-  str = str.replace( id_suffix, &#x27;&#x27; );
-  str = str.replace( underbar, &#x27; &#x27; );
+  str = str.replace( id_suffix, '' );
+  str = str.replace( underbar, ' ' );
 
   if( !low_first_letter ){
     str = inflector.capitalize( str );
@@ -1405,8 +1398,8 @@
   var i     = from_index;
   var j     = arr.length;
 
-  for( ; i &#x3c; j; i++ ){
-    if( arr[ i ]  === item || compare_func &#x26;&#x26; compare_func( arr[ i ], item )){
+  for( ; i &lt; j; i++ ){
+    if( arr[ i ]  === item || compare_func &amp;&amp; compare_func( arr[ i ], item )){
       index = i;
       break;
     }
@@ -1447,7 +1440,7 @@
 
   if( isNaN( count )) return str;
 
-  if( count === 0 || count &#x3e; 1 ){
+  if( count === 0 || count &gt; 1 ){
     return inflector._apply_rules( str, plural_rules, uncountable_words, plural );
   }else{
     return inflector._apply_rules( str, singular_rules, uncountable_words, singular );
@@ -1482,25 +1475,25 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">ordinalize = function ( str ){
-  var str_arr = str.split( &#x27; &#x27; );
+  var str_arr = str.split( ' ' );
   var i       = 0;
   var j       = str_arr.length;
 
-  for( ; i &#x3c; j; i++ ){
+  for( ; i &lt; j; i++ ){
     var k = parseInt( str_arr[ i ], 10 );
 
     if( !isNaN( k )){
       var ltd = str_arr[ i ].substring( str_arr[ i ].length - 2 );
       var ld  = str_arr[ i ].substring( str_arr[ i ].length - 1 );
-      var suf = &#x27;th&#x27;;
+      var suf = 'th';
 
-      if( ltd != &#x27;11&#x27; &#x26;&#x26; ltd != &#x27;12&#x27; &#x26;&#x26; ltd != &#x27;13&#x27; ){
-        if( ld === &#x27;1&#x27; ){
-          suf = &#x27;st&#x27;;
-        }else if( ld === &#x27;2&#x27; ){
-          suf = &#x27;nd&#x27;;
-        }else if( ld === &#x27;3&#x27; ){
-          suf = &#x27;rd&#x27;;
+      if( ltd != '11' &amp;&amp; ltd != '12' &amp;&amp; ltd != '13' ){
+        if( ld === '1' ){
+          suf = 'st';
+        }else if( ld === '2' ){
+          suf = 'nd';
+        }else if( ld === '3' ){
+          suf = 'rd';
         }
       }
 
@@ -1508,7 +1501,7 @@
     }
   }
 
-  return str_arr.join( &#x27; &#x27; );
+  return str_arr.join( ' ' );
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 - inflection.capitalize( str );
@@ -1525,7 +1518,7 @@
 
 ## Usage
 
-&#x3e; Require the module before using
+&gt; Require the module before using
 ...</pre></li>
     </ul>
 
@@ -1632,27 +1625,27 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">titleize = function ( str ){
-  str         = str.toLowerCase().replace( underbar, &#x27; &#x27; );
-  var str_arr = str.split( &#x27; &#x27; );
+  str         = str.toLowerCase().replace( underbar, ' ' );
+  var str_arr = str.split( ' ' );
   var i       = 0;
   var j       = str_arr.length;
   var d, k, l;
 
-  for( ; i &#x3c; j; i++ ){
-    d = str_arr[ i ].split( &#x27;-&#x27; );
+  for( ; i &lt; j; i++ ){
+    d = str_arr[ i ].split( '-' );
     k = 0;
     l = d.length;
 
-    for( ; k &#x3c; l; k++){
-      if( inflector.indexOf( non_titlecased_words, d[ k ].toLowerCase()) &#x3c; 0 ){
+    for( ; k &lt; l; k++){
+      if( inflector.indexOf( non_titlecased_words, d[ k ].toLowerCase()) &lt; 0 ){
         d[ k ] = inflector.capitalize( d[ k ]);
       }
     }
 
-    str_arr[ i ] = d.join( &#x27;-&#x27; );
+    str_arr[ i ] = d.join( '-' );
   }
 
-  str = str_arr.join( &#x27; &#x27; );
+  str = str_arr.join( ' ' );
   str = str.substring( 0, 1 ).toUpperCase() + str.substring( 1 );
 
   return str;
@@ -1688,7 +1681,7 @@
   var i = 0;
   var j = arr.length;
 
-  for( ;i &#x3c; j; i++ ){
+  for( ;i &lt; j; i++ ){
     var method = arr[ i ];
 
     if( inflector.hasOwnProperty( method )){
@@ -1712,7 +1705,7 @@
 
 ## Usage
 
-&#x3e; Require the module before using
+&gt; Require the module before using
 ...</pre></li>
     </ul>
 
@@ -1726,18 +1719,18 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">underscore = function ( str, all_upper_case ){
-  if( all_upper_case &#x26;&#x26; str === str.toUpperCase()) return str;
+  if( all_upper_case &amp;&amp; str === str.toUpperCase()) return str;
 
-  var str_path = str.split( &#x27;::&#x27; );
+  var str_path = str.split( '::' );
   var i        = 0;
   var j        = str_path.length;
 
-  for( ; i &#x3c; j; i++ ){
-    str_path[ i ] = str_path[ i ].replace( uppercase, &#x27;_$1&#x27; );
-    str_path[ i ] = str_path[ i ].replace( underbar_prefix, &#x27;&#x27; );
+  for( ; i &lt; j; i++ ){
+    str_path[ i ] = str_path[ i ].replace( uppercase, '_$1' );
+    str_path[ i ] = str_path[ i ].replace( underbar_prefix, '' );
   }
 
-  return str_path.join( &#x27;/&#x27; ).toLowerCase();
+  return str_path.join( '/' ).toLowerCase();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 ## API
@@ -1769,3 +1762,4 @@
     ]
 </div>
 </div>
+</body></html>
